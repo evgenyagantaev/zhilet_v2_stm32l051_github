@@ -203,9 +203,24 @@ int main(void)
 		threshold = THRESHOLD1;
 	else if(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_11) == GPIO_PIN_RESET)
 		threshold = THRESHOLD2;
+	else // avariya; oba dzhampera v vysokom urovne
+	{
+		// stop here and alarm blink with led
+		while(1)
+		{
+			HAL_Delay(100);
+  			HAL_GPIO_WritePin(led_out_GPIO_Port, led_out_Pin, GPIO_PIN_RESET); // turn led on
+			HAL_Delay(100);
+  			HAL_GPIO_WritePin(led_out_GPIO_Port, led_out_Pin, GPIO_PIN_SET); // turn led off
+
+		}
+	}
 
 	// DEBUG ************************
-	//threshold = THRESHOLD0;
+
+
+
+
 
 //*
 	while(1)
